@@ -8,6 +8,7 @@ TEST_CASE("infers the breach according to limits") {
   BatteryCharacter batteryChar = {PASSIVE_COOLING,"BatteryBrandABC"};
   REQUIRE(checkAndAlert(alertTarget, batteryChar, -1) == TOO_LOW);
   REQUIRE(checkAndAlert(alertTarget, batteryChar, 36 ) == TOO_HIGH);
+  AlertTarget alertTarget = TO_EMAIL;
   REQUIRE(checkAndAlert(alertTarget, batteryChar, 0) == NORMAL);
   REQUIRE(checkAndAlert(alertTarget, batteryChar, 35) == NORMAL);
 }
