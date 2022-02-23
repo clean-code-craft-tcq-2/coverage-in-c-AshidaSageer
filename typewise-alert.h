@@ -28,7 +28,7 @@ typedef enum {
   TOO_HIGH
 } BreachType;
 
-const extern char* BreachStatus[] = {"normal","too low","too high"};
+
 
 BreachType inferBreach(double value, double lowerLimit, double upperLimit);
 BreachType classifyTemperatureBreach(CoolingType coolingType, double temperatureInC);
