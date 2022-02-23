@@ -4,5 +4,10 @@
 #include "typewise-alert.h"
 
 TEST_CASE("infers the breach according to limits") {
-  REQUIRE(inferBreach(12, 20, 30) == TOO_LOW);
+  AlertTarget alertTarget = TO_CONTROLLER;
+  BatteryCharacter batteryChar = {PASSIVE_COOLING,"BatteryBrandABC"};
+  REQUIRE(checkAndAlert(alertTarget, batteryChar, -1) == TOO_LOW);
+  REQUIRE(checkAndAlert(alertTarget, batteryChar, 36 ) == TOO_HIGH);
+  REQUIRE(checkAndAlert(alertTarget, batteryChar, 0) == NORMAL);
+  REQUIRE(checkAndAlert(alertTarget, batteryChar, 35) == NORMAL);
 }
