@@ -8,6 +8,8 @@ TemperatureLimits temperaturelimits[] =     {{PASSIVECOOLING_LOWERLIMIT,PASSIVEC
 
 const  char* BreachStatus[] = {"normal","too low","too high"};
 
+void (*alertTarget_FuncPtr[])(BreachType)={sendToController,sendToEmail};
+
 BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
   if(value < lowerLimit) {
     return TOO_LOW;
@@ -33,14 +35,7 @@ void checkAndAlert(
     batteryChar.coolingType, temperatureInC
   );
 
-  switch(alertTarget) {
-    case TO_CONTROLLER:
-      sendToController(breachType);
-      break;
-    case TO_EMAIL:
-      sendToEmail(breachType);
-      break;
-  }
+  alertTarget_FuncPtr[alertTarget](breachType);
 }
 
 void sendToController(BreachType breachType) {
