@@ -13,18 +13,18 @@ TEST_CASE("infers the breach according to limits") {
   REQUIRE(checkAndAlert(alertTarget, batteryChar, 35) == NORMAL);
   
    alertTarget = TO_CONTROLLER;
-  batteryChar = {HI_ACTIVE_COOLING,"BatteryBrandABC"};
-  REQUIRE(checkAndAlert(alertTarget, batteryChar, -1) == TOO_LOW);
-  REQUIRE(checkAndAlert(alertTarget, batteryChar, 46 ) == TOO_HIGH);
+  BatteryCharacter batteryChar2 = {HI_ACTIVE_COOLING,"BatteryBrandABC"};
+  REQUIRE(checkAndAlert(alertTarget, batteryChar2, -1) == TOO_LOW);
+  REQUIRE(checkAndAlert(alertTarget, batteryChar2, 46 ) == TOO_HIGH);
   alertTarget = TO_EMAIL;
-  REQUIRE(checkAndAlert(alertTarget, batteryChar, 0) == NORMAL);
-  REQUIRE(checkAndAlert(alertTarget, batteryChar, 45) == NORMAL);
+  REQUIRE(checkAndAlert(alertTarget, batteryChar2, 0) == NORMAL);
+  REQUIRE(checkAndAlert(alertTarget, batteryChar2, 45) == NORMAL);
   
   alertTarget = TO_CONTROLLER;
-  batteryChar = {MED_ACTIVE_COOLING,"BatteryBrandABC"};
-  REQUIRE(checkAndAlert(alertTarget, batteryChar, -1) == TOO_LOW);
-  REQUIRE(checkAndAlert(alertTarget, batteryChar, 41 ) == TOO_HIGH);
+  BatteryCharacter batteryChar3 = {MED_ACTIVE_COOLING,"BatteryBrandABC"};
+  REQUIRE(checkAndAlert(alertTarget, batteryChar3, -1) == TOO_LOW);
+  REQUIRE(checkAndAlert(alertTarget, batteryChar3, 41 ) == TOO_HIGH);
   alertTarget = TO_EMAIL;
-  REQUIRE(checkAndAlert(alertTarget, batteryChar, 0) == NORMAL);
-  REQUIRE(checkAndAlert(alertTarget, batteryChar, 40) == NORMAL);
+  REQUIRE(checkAndAlert(alertTarget, batteryChar3, 0) == NORMAL);
+  REQUIRE(checkAndAlert(alertTarget, batteryChar3, 40) == NORMAL);
 }
