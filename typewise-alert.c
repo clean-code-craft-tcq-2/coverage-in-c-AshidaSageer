@@ -1,5 +1,6 @@
 #include "typewise-alert.h"
 #include <stdio.h>
+#include <string.h>
 
 TemperatureLimits temperaturelimits[] =     {{PASSIVECOOLING_LOWERLIMIT,PASSIVECOOLING_UPPERLIMIT },
                                                {HI_ACTIVECOOLING_LOWERLIMIT,HI_ACTIVECOOLING_UPPERLIMIT},
@@ -8,7 +9,13 @@ TemperatureLimits temperaturelimits[] =     {{PASSIVECOOLING_LOWERLIMIT,PASSIVEC
 
 const  char* BreachStatus[] = {"normal","too low","too high"};
 
+
 void (*alertTarget_FuncPtr[])(BreachType)={sendToController,sendToEmail};
+
+void printToConsole(char message[])
+{
+printf(message);
+}
 
 BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
   if(value < lowerLimit) {
@@ -42,13 +49,20 @@ BreachType checkAndAlert(
 
 void sendToController(BreachType breachType) {
   const unsigned short header = 0xfeed;
-  printf("%x : %x\n", header, breachType);
+  char messageToController[100];
+  //printf("%x : %x\n", header, breachType);
+  printf(messageToController,"%x : %x\n", header, breachType);
+  printToConsole(messageToController);
 }
 
 void sendToEmail(BreachType breachType) {
   const char* recepient = "a.b@c.com";
-  
-      printf("To: %s\n", recepient);
-      printf("Hi, the temperature is %s \n",BreachStatus[breachType]);
-      
+  char recepientaddress[50]  ;
+  char messageTomail[100];
+     /* printf("To: %s\n", recepient);
+      printf("Hi, the temperature is %s \n",BreachStatus[breachType]);*/
+      sprintf (recepientaddress, "To: %s\n", recepient);
+    printToConsole(recepientaddress);
+      sprintf (messageTomail, "Hi, the temperature is %s \n",BreachStatus[breachType]);
+    printToConsole(messageTomail);
 }
