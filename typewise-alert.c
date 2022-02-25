@@ -50,8 +50,7 @@ BreachType checkAndAlert(
 void sendToController(BreachType breachType) {
   const unsigned short header = 0xfeed;
   char messageToController[100];
-  //printf("%x : %x\n", header, breachType);
-  printf(messageToController,"%x : %x\n", header, breachType);
+  sprintf(messageToController,"%x : %x\n", header, breachType);
   printToConsole(messageToController);
 }
 
@@ -59,8 +58,7 @@ void sendToEmail(BreachType breachType) {
   const char* recepient = "a.b@c.com";
   char recepientaddress[50]  ;
   char messageTomail[100];
-     /* printf("To: %s\n", recepient);
-      printf("Hi, the temperature is %s \n",BreachStatus[breachType]);*/
+     
       sprintf (recepientaddress, "To: %s\n", recepient);
     printToConsole(recepientaddress);
       sprintf (messageTomail, "Hi, the temperature is %s \n",BreachStatus[breachType]);
