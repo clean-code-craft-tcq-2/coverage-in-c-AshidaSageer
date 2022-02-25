@@ -48,3 +48,4 @@ BreachType checkAndAlert(
 
 void sendToController(BreachType breachType);
 void sendToEmail(BreachType breachType);
+void printToConsole(char message[]);
