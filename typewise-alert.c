@@ -12,11 +12,11 @@ const  char* BreachStatus[] = {"normal","too low","too high"};
 
 void (*alertTarget_FuncPtr[])(BreachType)={sendToController,sendToEmail};
 
-void printToConsole(char message[])
+/*void printToConsole(char message[])
 {
 printf(" %s",message);
   return;
-}
+}*/
 
 BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
   if(value < lowerLimit) {
@@ -50,18 +50,22 @@ BreachType checkAndAlert(
 
 void sendToController(BreachType breachType) {
   const unsigned short header = 0xfeed;
-  char messageToController[100];
+  /*char messageToController[100];
   sprintf(messageToController,"%x : %x\n", header, breachType);
-  printToConsole(messageToController);
+  printToConsole(messageToController);*/
+   printf("%x : %x\n", header, breachType);
 }
 
 void sendToEmail(BreachType breachType) {
   const char* recepient = "a.b@c.com";
-  char recepientaddress[50]  ;
-  char messageTomail[100];
+  //char recepientaddress[50]  ;
+  //char messageTomail[100];
      
-      sprintf (recepientaddress, "To: %s\n", recepient);
+      /*sprintf (recepientaddress, "To: %s\n", recepient);
     printToConsole(recepientaddress);
       sprintf (messageTomail, "Hi, the temperature is %s \n",BreachStatus[breachType]);
-    printToConsole(messageTomail);
+    printToConsole(messageTomail);*/
+  
+  printf ("To: %s\n", recepient);
+  printf ( "Hi, the temperature is %s \n",BreachStatus[breachType]);
 }
