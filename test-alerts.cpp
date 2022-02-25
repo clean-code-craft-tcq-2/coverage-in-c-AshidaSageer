@@ -12,7 +12,7 @@ TEST_CASE("infers the breach according to limits") {
   REQUIRE(checkAndAlert(alertTarget, batteryChar, 0) == NORMAL);
   REQUIRE(checkAndAlert(alertTarget, batteryChar, 35) == NORMAL);
   
-  AlertTarget alertTarget = TO_CONTROLLER;
+   alertTarget = TO_CONTROLLER;
   batteryChar = {HI_ACTIVE_COOLING,"BatteryBrandABC"};
   REQUIRE(checkAndAlert(alertTarget, batteryChar, -1) == TOO_LOW);
   REQUIRE(checkAndAlert(alertTarget, batteryChar, 46 ) == TOO_HIGH);
@@ -20,7 +20,7 @@ TEST_CASE("infers the breach according to limits") {
   REQUIRE(checkAndAlert(alertTarget, batteryChar, 0) == NORMAL);
   REQUIRE(checkAndAlert(alertTarget, batteryChar, 45) == NORMAL);
   
-  AlertTarget alertTarget = TO_CONTROLLER;
+  alertTarget = TO_CONTROLLER;
   batteryChar = {MED_ACTIVE_COOLING,"BatteryBrandABC"};
   REQUIRE(checkAndAlert(alertTarget, batteryChar, -1) == TOO_LOW);
   REQUIRE(checkAndAlert(alertTarget, batteryChar, 41 ) == TOO_HIGH);
