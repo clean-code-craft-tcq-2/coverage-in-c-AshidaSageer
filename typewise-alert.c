@@ -15,7 +15,7 @@ void (*alertTarget_FuncPtr[])(BreachType)={sendToController,sendToEmail};
 void printToConsole(char message[])
 {
 printf(" %s",message);
-  return
+  return;
 }
 
 BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
